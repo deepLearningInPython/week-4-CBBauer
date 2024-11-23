@@ -80,7 +80,8 @@ print(word_frequencies)
 # Your code here:
 # -----------------------------------------------
 def token_counts(string: str, k: int = 1) -> dict:
-    tokens = tokenize(string)
+    words = string.lower().split()
+    tokens = [word.strip(".,!'?;:") for word in words if word.strip(".,!'?;:")]
     freqs = {}
     for token in tokens:
         freqs[token] = freqs.get(token, 0) + 1
@@ -167,14 +168,14 @@ all(i2t[t2i[tok]] == tok for tok in t2i) # should be True
 
 # Your code here:
 # -----------------------------------------------
-def tokenize_and_encode(documents: list) -> list:
+def tokenize_and_encode(documents: list) -> tuple:
     token_to_id, id_to_token = make_vocabulary_map(documents)
     encoded = []
     
     for doc in documents:
         tokens = tokenize(doc)
         encoded.append([token_to_id[token] for token in tokens])
-        
+    
     return encoded, token_to_id, id_to_token
 
 # Test:
