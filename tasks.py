@@ -149,8 +149,8 @@ def make_vocabulary_map(documents: list) -> tuple:
         all_tokens.update(doc_tokens)
     
     sorted_tokens = sorted(all_tokens)
-    token_to_id = {token: key for key, token in enumerate(tokens)}
-    id_to_token = {key: token for key, token in enumerate(tokens)}
+    token_to_id = {token: key for key, token in enumerate(sorted_tokens)}
+    id_to_token = {key: token for key, token in enumerate(sorted_tokens)}
     
     return token_to_id, id_to_token
 
